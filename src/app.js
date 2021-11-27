@@ -16,15 +16,19 @@ app.use(function(req, res, next){
 //O next indica que ele ele pode seguir fora da função, impedindo que a aplicação fique travada nestas configurações header
 // para que o front consiga utilizar as rotas que vamos criar precisamos dar essa permissão de acesso
 
+app.options("/*", (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers");
+    res.header(
+      "Access-Control-Allow-Methods",
+      "PUT,POST,GET,DELETE,OPTIONS,PATCH"
+    );
+    res.send("send some thing whatever");
+});
+  
+
 app.use("/", index);
 
 app.use("/doctors", doctors);
-
-//app.options("/*", (req, res) => {
-//    res.header("Access-Control-Allow-Origin", "*");
-//   res.header("Access-Control-Allow-Headers");
-//    res.header("Access-Control-Allow-Methods", "PUT, POT, DELETE, OPTIONS, PATCH");
-//    res.send("manda qualquer coisa aí");
-//});
 
 module.exports = app;
